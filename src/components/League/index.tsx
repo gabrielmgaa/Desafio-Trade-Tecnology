@@ -20,15 +20,15 @@ export function League() {
   const [leagues, setLeagues] = useState<Leagues[]>([])
   const { params, apiKey, handleSetParams } = useContext(AppContext)
 
-  // useEffect(() => {
-  //   api.get(`/leagues?country=${params.country}&season=${params.season}`, {
-  //     headers: {
-  //       "x-rapidapi-key": `${apiKey}`
-  //       // 85f8e73bb5f24f003fb2a0811e6c888e
-  //     }
-  //   })
-  //     .then(res => setLeagues(res.data.response))
-  // }, [apiKey, params])
+  useEffect(() => {
+    api.get(`/leagues?country=${params.country}&season=${params.season}`, {
+      headers: {
+        "x-rapidapi-key": `${apiKey}`
+        // 85f8e73bb5f24f003fb2a0811e6c888e
+      }
+    })
+      .then(res => setLeagues(res.data.response))
+  }, [apiKey, params])
 
   function handleAddLeague(e: ChangeEvent<HTMLInputElement>) {
     handleSetParams("league", e.target.value)
@@ -49,7 +49,7 @@ export function League() {
           />
         ))}
 
-        <CardBox>
+        {/* <CardBox>
           <img src="https://media-2.api-sports.io/football/leagues/71.png" alt="" />
           <input type="radio" name="changed" id="71" value="71" onChange={handleAddLeague} />
           <label htmlFor="71">Serie A</label>
@@ -63,7 +63,7 @@ export function League() {
           <img src="https://media-2.api-sports.io/football/leagues/73.png" alt="" />
           <input type="radio" name="changed" id="73" value="73" onChange={handleAddLeague} />
           <label htmlFor="73">Copa do Brasil</label>
-        </CardBox>
+        </CardBox> */}
 
       </GridCard>
 

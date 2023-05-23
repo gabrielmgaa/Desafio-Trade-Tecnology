@@ -14,17 +14,17 @@ interface ContriesProps {
 export function Countries() {
   const [countries, setCountries] = useState<ContriesProps[]>([])
 
-  const { params, handleSetParams } = useContext(AppContext)
+  const { apiKey, handleSetParams } = useContext(AppContext)
 
-  // useEffect(() => {
-  //   api.get('/countries', {
-  //     headers: {
-  //       "x-rapidapi-key": "d11ebc7cade227f3208d1ea7d54fb695"
-  //     }
-  //   }).then(res => {
-  //     setCountries(res.data.response)
-  //   })
-  // }, [])
+  useEffect(() => {
+    api.get('/countries', {
+      headers: {
+        "x-rapidapi-key": `${apiKey}`
+      }
+    }).then(res => {
+      setCountries(res.data.response)
+    })
+  }, [])
 
   function handleAddCountry(e: ChangeEvent<HTMLSelectElement>) {
     handleSetParams("country", e.target.value)
@@ -34,24 +34,24 @@ export function Countries() {
     <CountriesContainer>
       <h1>Selecione o País</h1>
 
-      {/* {countries.length === 0 ? (
+      {countries.length === 0 ? (
         <Spinner />
       ) : (
-          <select name="country" id="country" defaultValue="">
+          <select name="country" id="country" onChange={handleAddCountry} defaultValue="">
             <option disabled value="">Selecione um país</option>
             {
               countries.map(country => (
-                <option onClick={handleAddCountry} value={country.name} key={country.name}>{country.name}</option>
+                <option  value={country.name} key={country.name}>{country.name}</option>
               ))
             }
           </select>
-      )} */}
+      )}
 
-      <select name="country" id="country" onChange={handleAddCountry} required defaultValue={params.country}>
+      {/* <select name="country" id="country" onChange={handleAddCountry} required defaultValue={params.country}>
         <option disabled value="">Selecione um país</option>
         <option value="brazil" key="brazil">Brazil</option>
         <option value="Estados Unidos" key="eua">Eua</option>
-      </select>
+      </select> */}
     </CountriesContainer>
   )
 }
