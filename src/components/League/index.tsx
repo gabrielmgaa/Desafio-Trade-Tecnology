@@ -20,15 +20,14 @@ export function League() {
   const [leagues, setLeagues] = useState<Leagues[]>([])
   const { params, apiKey, handleSetParams } = useContext(AppContext)
 
-  // useEffect(() => {
-  //   api.get(`/leagues?country=${params.country}&season=${params.season}`, {
-  //     headers: {
-  //       "x-rapidapi-key": `${apiKey}`
-  //       // 85f8e73bb5f24f003fb2a0811e6c888e
-  //     }
-  //   })
-  //     .then(res => setLeagues(res.data.response))
-  // }, [apiKey, params])
+  useEffect(() => {
+    api.get(`/leagues?country=${params.country}&season=${params.season}`, {
+      headers: {
+        "x-rapidapi-key": `${apiKey}`
+      }
+    })
+      .then(res => setLeagues(res.data.response))
+  }, [apiKey, params])
 
   function handleAddLeague(e: ChangeEvent<HTMLInputElement>) {
     handleSetParams("league", e.target.value)
