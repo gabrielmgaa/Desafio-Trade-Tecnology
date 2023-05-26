@@ -25,28 +25,28 @@ export function Teams() {
 
   const { params, apiKey } = useContext(AppContext)
 
-  useEffect(() => {
-    api(`/teams?country=${params.country}&league=${params.league}&season=${params.season}`, {
-      headers: {
-        "x-rapidapi-key": `${apiKey}`
-      }
-    })
-      .then(res => setTeams(res.data.response))
-  }, [apiKey, params])
+  // useEffect(() => {
+  //   api(`/teams?country=${params.country}&league=${params.league}&season=${params.season}`, {
+  //     headers: {
+  //       "x-rapidapi-key": `${apiKey}`
+  //     }
+  //   })
+  //     .then(res => setTeams(res.data.response))
+  // }, [apiKey, params])
 
   return (
     <TeamsContainer>
       <h1>Teams</h1>
 
       <GridCard>
-        {teams.map(team => (
+        {/* {teams.map(team => (
           <Card
             key={team.team.id}
             id={team.team.id}
             name={team.team.name}
             logo={team.team.logo}
           />
-        ))}
+        ))} */}
 
         <CardBox>
           <img src="" alt="" />

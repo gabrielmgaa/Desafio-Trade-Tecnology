@@ -6,6 +6,7 @@ import { AppContext } from '../../contexts/AppContext'
 
 import { PlayerCard } from './PlayerCard'
 import { api } from '../../lib/axios'
+
 import { Grid } from './styles'
 import { InfosTeamContainer } from './PlayerCard/styles'
 
@@ -46,10 +47,6 @@ export function Team() {
   const [team, setTeam] = useState<Team>()
   const [players, setPlayers] = useState<Player[]>([])
 
-  const lineups = team?.lineups.sort((a, b) => {
-    return (b.played - a.played)
-  })[0]
-
   const { id } = useParams()
 
   const { params, apiKey } = useContext(AppContext)
@@ -74,6 +71,9 @@ export function Team() {
     getApiInfo()
   }, [params, id, apiKey])
 
+  const lineups = team?.lineups.sort((a, b) => {
+    return (b.played - a.played)
+  })[0]
 
   return (
     <>
@@ -101,8 +101,6 @@ export function Team() {
         <p>Percas:{team?.fixtures.loses.total}</p>
         <p>Total:{team?.fixtures.draws.total}</p>
       </InfosTeamContainer>
-
-
     </>
   )
 }

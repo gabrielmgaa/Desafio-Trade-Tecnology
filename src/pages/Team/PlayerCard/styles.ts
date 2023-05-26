@@ -8,7 +8,7 @@ export const PlayerCard = styled.div`
 `
 
 export const InfosTeamContainer = styled.div`
-  max-width: 10rem;
+  max-width: 30rem;
   margin: auto;
   width: 95%;
 `

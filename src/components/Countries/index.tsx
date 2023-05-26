@@ -14,17 +14,17 @@ interface ContriesProps {
 export function Countries() {
   const [countries, setCountries] = useState<ContriesProps[]>([])
 
-  const { apiKey, handleSetParams } = useContext(AppContext)
+  const { params, apiKey, handleSetParams } = useContext(AppContext)
 
-  useEffect(() => {
-    api.get('/countries', {
-      headers: {
-        "x-rapidapi-key": `${apiKey}`
-      }
-    }).then(res => {
-      setCountries(res.data.response)
-    })
-  }, [])
+  // useEffect(() => {
+  //   api.get('/countries', {
+  //     headers: {
+  //       "x-rapidapi-key": `${apiKey}`
+  //     }
+  //   }).then(res => {
+  //     setCountries(res.data.response)
+  //   })
+  // }, [])
 
   function handleAddCountry(e: ChangeEvent<HTMLSelectElement>) {
     handleSetParams("country", e.target.value)
@@ -34,7 +34,7 @@ export function Countries() {
     <CountriesContainer>
       <h1>Selecione o País</h1>
 
-      {countries.length === 0 ? (
+      {/* {countries.length === 0 ? (
         <Spinner />
       ) : (
           <select name="country" id="country" onChange={handleAddCountry} defaultValue="">
@@ -45,13 +45,13 @@ export function Countries() {
               ))
             }
           </select>
-      )}
+      )} */}
 
-      {/* <select name="country" id="country" onChange={handleAddCountry} required defaultValue={params.country}>
+      <select name="country" id="country" onChange={handleAddCountry} required defaultValue={params.country}>
         <option disabled value="">Selecione um país</option>
         <option value="brazil" key="brazil">Brazil</option>
         <option value="Estados Unidos" key="eua">Eua</option>
-      </select> */}
+      </select>
     </CountriesContainer>
   )
 }
